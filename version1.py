@@ -1,16 +1,15 @@
+import math
+import random
 import smtplib
-import random 
+from twilio.rest import Client
 
-otp = (random.randrange(100000, 999999))
-my_mail = "pooja1713953@gmail.com"
-passcode = "kaxwlziuipezhgih"
+def generateOTP(length):
+    digits = "0123456789"
+    otp = ""
 
-connection = smtplib.SMTP("smtp.gmail.com")
-connection.starttls()
-connection.login(user=my_mail, password=passcode)
-
-
-mail_content = f"Your OTP is {otp}"
+    for i in range(length):
+        otp += digits[math.floor(random.random()*10)]
+    return otp
 
 try:
    connection.sendmail(from_addr=my_mail, to_addrs="pooja1713953@gmail.com",msg=mail_content)
